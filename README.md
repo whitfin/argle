@@ -2,7 +2,30 @@
 
 Argle is a very small argument shifting library for JavaScript which makes it easy to accept optional parameters **before** the end of your arguments list. It works great against things like destructuring in ES6, but is still usable from within ES5 versions of JavaScript.
 
-Consider this example:
+### Installation
+
+Argle lives on npm, so just install it via the command line and you're good to go. All other dependencies will be pulled automatically.
+
+```
+$ npm install --save argle
+```
+
+### Usage
+
+The API is super simple, there's a single function `shift/3`:
+
+```javascript
+argle.shift(argumentsArray, [ optionalDefaultValues | optionalOptionsObject ], detectionFunction);
+
+// argumentsArray           - your args list to shift (an array or arguments object)
+// optionalDefaultValues    - a values list to shift with rather than 'undefined', this is the same as { defaults: optionalDefaultValues }
+// optionalOptionsObject    - an object containing options
+    // count                - the amount of arguments you desire (only useful with ...args syntax)
+    // defaults             - a values list to shift with rather than 'undefined'
+// detectionFunction        - a function which should return true when you've found your right-most argument
+```
+
+### Examples
 
 ```javascript
 // Define a function which always has a callback, but two optional arguments
@@ -54,29 +77,6 @@ function myFunction(...argList) {
   [ optionalArgument1, optionalArgument2, callbackFunction ] = argle.shift(argList, opts, isFunction);
   // or [ optionalArgument1 = {}, optionalArgument2 = {}, callbackFunction ] = argle.shift(argList, { count: 3 }, isFunction);
 }
-```
-
-### Installation
-
-Argle lives on npm, so just install it via the command line and you're good to go. All other dependencies will be pulled automatically.
-
-```
-$ npm install --save argle
-```
-
-### Usage
-
-The API is super simple, there's a single function `shift/3`:
-
-``javascript
-argle.shift(argumentsArray, [ optionalDefaultValues | optionalOptionsObject ], detectionFunction);
-
-// argumentsArray           - your args list to shift (an array or arguments object)
-// optionalDefaultValues    - a values list to shift with rather than 'undefined', this is the same as { defaults: optionalDefaultValues }
-// optionalOptionsObject    - an object containing options
-    // count                - the amount of arguments you desire (only useful with ...args syntax)
-    // defaults             - a values list to shift with rather than 'undefined'
-// detectionFunction        - a function which should return true when you've found your right-most argument
 ```
 
 ### Issues
