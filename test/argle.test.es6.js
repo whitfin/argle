@@ -2,7 +2,7 @@ var argle = require('../');
 var should = require('should');
 var isFunction = require('lodash.isfunction');
 
-var func = function () { };
+function func() { }
 
 test('argument shifting with ...args syntax', function () {
   function myFunction(opts, ...argList) {

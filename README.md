@@ -22,6 +22,7 @@ argle.shift(argumentsArray, [ optionalDefaultValues | optionalOptionsObject ], d
 // optionalOptionsObject    - an object containing options
     // count                - the amount of arguments you desire (only useful with ...args syntax)
     // defaults             - a values list to shift with rather than 'undefined'
+    // match                - the number of matches to require (in a row) before shifting (defaults to 1)
 // detectionFunction        - a function which should return true when you've found your right-most argument
 ```
 
@@ -76,5 +77,16 @@ function myFunction(...argList) {
   
   [ optionalArgument1, optionalArgument2, callbackFunction ] = argle.shift(argList, opts, isFunction);
   // or [ optionalArgument1 = {}, optionalArgument2 = {}, callbackFunction ] = argle.shift(argList, { count: 3 }, isFunction);
+}
+
+// Match counts can be used to determine how many must match (in a row) before shifting:
+// Here's an example of when you would use a custom match count:
+function myFunction(optionalArgument1, optionalArgument2, callbackFunction1, callbackFunction2) {
+  return argle.shift([ optionalArgument1, optionalArgument2, callbackFunction1, callbackFunction2 ], { match: 2 }, isFunction);
+  
+  // myFunction(function () { }, function () { }) == [ undefined, undefined, function () { }, function () { })
+  // myFunction(1, function () { }, function () { }) == [ 1, undefined, function () { }, function () { })
+  // myFunction(1, 2, function () { }, function () { }) == [ 1, 2, function () { }, function () { })
+  // myFunction(1, function () { }, 2, function () { }) == [ 1, function () { }, 2, function () { })
 }
 ```
