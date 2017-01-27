@@ -78,7 +78,3 @@ function myFunction(...argList) {
   // or [ optionalArgument1 = {}, optionalArgument2 = {}, callbackFunction ] = argle.shift(argList, { count: 3 }, isFunction);
 }
 ```
-
-### Issues
-
-If you spot any issues when using Argle, please file an [issue](https://github.com/zackehh/argle/issues).
