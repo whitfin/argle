@@ -61,10 +61,12 @@ function myFunction(optionalArgument1, optionalArgument2, callbackFunction) {
   var args1 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], isFunction);
   var args2 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ 1, 2 ], isFunction);
   var args3 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ {} ], isFunction);
+  var args4 = argle.shift(arguments, { count: 3 }, isFunction);
   
   // args1 == [ undefined, undefined, function () { })
   // args2 == [ 1, 2, function () { })
   // args3 == [ undefined, {}, function () { })
+  // args4 == [ undefined, undefined, function () { })
 }
 
 // In ES6, calling with: myFunction(function () { }):
