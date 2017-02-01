@@ -27,7 +27,6 @@
     "test": "mocha -u tdd test/index.js"
   },
   "dependencies": {
-    "lodash.isarray": "^4.0.0",
     "lodash.isfunction": "^3.0.8",
     "lodash.isnumber": "^3.0.3"
   },
