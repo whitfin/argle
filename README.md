@@ -1,4 +1,6 @@
-# Argle [![Build Status](https://travis-ci.org/zackehh/argle.svg?branch=master)](https://travis-ci.org/zackehh/argle)
+# Argle
+
+[![Build Status](https://img.shields.io/github/actions/workflow/status/whitfin/argle/ci.yml?branch=main)](https://github.com/whitfin/argle/actions) [![Published Version](https://img.shields.io/npm/v/argle.svg)](https://npmjs.com/package/argle) [![Published Downloads](https://img.shields.io/npm/dt/argle)](https://npmjs.com/package/argle)
 
 Argle is a very small argument shifting library for JavaScript which makes it easy to accept optional parameters **before** the end of your arguments list. It works great against things like destructuring in ES6, but is still usable from within ES5 versions of JavaScript.
 
@@ -31,7 +33,7 @@ argle.shift(argumentsArray, [ optionalDefaultValues | optionalOptionsObject ], d
 ```javascript
 // Define a function which always has a callback, but two optional arguments
 function myFunction(optionalArgument1, optionalArgument2, callbackFunction) {
-  
+
 }
 
 // Typically you're stuck shifting these arguments manually:
@@ -58,11 +60,11 @@ function myFunction(optionalArgument1 = {}, optionalArgument2 = {}, callbackFunc
 // Argle aims to make this a little less awful (it's still gross though)
 // In ES5, calling with: myFunction(function () { }):
 function myFunction(optionalArgument1, optionalArgument2, callbackFunction) {
-  var args1 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], isFunction);
-  var args2 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ 1, 2 ], isFunction);
-  var args3 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ {} ], isFunction);
-  var args4 = argle.shift(arguments, { count: 3 }, isFunction);
-  
+  let args1 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], isFunction);
+  let args2 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ 1, 2 ], isFunction);
+  let args3 = argle.shift([ optionalArgument1, optionalArgument2, callbackFunction ], [ {} ], isFunction);
+  let args4 = argle.shift(arguments, { count: 3 }, isFunction);
+
   // args1 == [ undefined, undefined, function () { })
   // args2 == [ 1, 2, function () { })
   // args3 == [ undefined, {}, function () { })
@@ -76,7 +78,7 @@ function myFunction(...argList) {
     count: 3,
     defaults: [ {}, {} ]
   };
-  
+
   [ optionalArgument1, optionalArgument2, callbackFunction ] = argle.shift(argList, opts, isFunction);
   // or [ optionalArgument1 = {}, optionalArgument2 = {}, callbackFunction ] = argle.shift(argList, { count: 3 }, isFunction);
 }
@@ -85,7 +87,7 @@ function myFunction(...argList) {
 // Here's an example of when you would use a custom match count:
 function myFunction(optionalArgument1, optionalArgument2, callbackFunction1, callbackFunction2) {
   return argle.shift([ optionalArgument1, optionalArgument2, callbackFunction1, callbackFunction2 ], { match: 2 }, isFunction);
-  
+
   // myFunction(function () { }, function () { }) == [ undefined, undefined, function () { }, function () { })
   // myFunction(1, function () { }, function () { }) == [ 1, undefined, function () { }, function () { })
   // myFunction(1, 2, function () { }, function () { }) == [ 1, 2, function () { }, function () { })

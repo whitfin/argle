@@ -20,3 +20,7 @@ docs
 
 # tests
 test
+
+# CI stuff
+.github
+.eslintrc

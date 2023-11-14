@@ -1,9 +1,9 @@
 suite('Argle', function () {
 
-  require('./argle.test');
+    require('./argle.test');
 
-  if (Number(process.versions.node.split('.')[0] || 0) > 4) {
-    require('./argle.test.es6');
-  }
+    if (Number(process.versions.node.split('.')[0] || 0) > 4) {
+        require('./argle.test.es6');
+    }
 
 });
